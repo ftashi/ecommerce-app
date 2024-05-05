@@ -15,13 +15,22 @@ const elements = useElements();
         
         return;
     }
+    const response = await fetch('/.netifly/functions/create-payment-intent.js',{
 
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ amount: 10000})
+
+    }).then(res => res.json())
+console.log(response)
     }
-
+  
 return(
 
     <PaymentFormContainer>
-    <FormContainer>
+    <FormContainer onSubmit={paymentHandler}>
     <h2>Credit Card Payment:</h2>
         <CardElement />
       <Button buttonType={BUTTON_TYPE_CLASSES.inverted}> Pay now </Button>
