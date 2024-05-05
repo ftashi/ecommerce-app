@@ -1,5 +1,4 @@
-import './directory-item.styles.scss'
-import { Link } from 'react-router-dom';
+import './directory-item.styles.scss';
 import { useNavigate } from 'react-router-dom';
 
 const DirectoryItem = ({ category }) => {

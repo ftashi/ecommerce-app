@@ -1,21 +1,27 @@
-import { Fragment, useContext } from "react";
-import { Outlet, Link, Form } from "react-router-dom";
+import { Fragment } from "react";
+import { Outlet, Link} from "react-router-dom";
 import './navigation.styles.scss';
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentUser} from '../../store/user/user.selector'
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import SearchBar from "../../components/search-bar/search-bar.component";
-import { UserContext } from "../../context/user.context";
-import { CartContext } from "../../context/cart.context";
-
-import { signOutUser } from "../../utils/firebase.utils";
 
 
-const Navigation = ({handleSearch}) => {
-  const { currentUser } = useContext(UserContext) ;
-  const { isCardOpen } = useContext(CartContext)
+import { signOutStart } from "../../store/user/user.action";
+
+const Navigation = () => {
   
+ const dispatch = useDispatch();
+
+const currentUser = useSelector(selectCurrentUser)
+
+  const isCardOpen = useSelector(selectIsCartOpen)
+  
+const signOutUser = () => dispatch(signOutStart());
+
     return(
       <Fragment>
         <div className='navigation'>
@@ -23,7 +29,6 @@ const Navigation = ({handleSearch}) => {
              <CrwnLogo className='logo'/>
             </Link>
              <div>
-              <SearchBar handleSearch={handleSearch} />
              </div>
             
            
