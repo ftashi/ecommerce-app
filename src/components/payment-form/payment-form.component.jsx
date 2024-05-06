@@ -8,9 +8,9 @@ import { useSelector } from "react-redux"
 import { selectCartTotal } from '../../store/cart/cart.selector'
 import { selectCurrentUser } from '../../store/user/user.selector'
 
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component"
+import { BUTTON_TYPE_CLASSES } from "../button/button.component"
 
-import { PaymentFormContainer, FormContainer } from "./payment-form.styles"
+import { PaymentFormContainer, FormContainer, PaymentButton } from "./payment-form.styles"
 
 const PaymentForm = () => {
     const stripe = useStripe();
@@ -26,6 +26,7 @@ const [isProcessingPayment, setIsProcessingPayment] = useState(false)
         
         return;
     }
+    setIsProcessingPayment(true);
 
     const response = await fetch('/.netifly/functions/create-payment-intent.js',{
 
@@ -54,6 +55,7 @@ const paymentResult = await stripe.confirmCardPayment(client_secret, {
     },
 });
    
+setIsProcessingPayment(false);
 
 if (paymentResult.error) {
     alert(paymentResult.error)
@@ -71,7 +73,7 @@ return(
     <FormContainer onSubmit={paymentHandler}>
     <h2>Credit Card Payment:</h2>
         <CardElement />
-      <Button disabled={isProcessingPayment} buttonType={BUTTON_TYPE_CLASSES.inverted}>{' '} Pay now{' '} </Button>
+      <PaymentButton disabled={isProcessingPayment} buttonType={BUTTON_TYPE_CLASSES.inverted}>Pay now</PaymentButton>
     </FormContainer>
     </PaymentFormContainer>
 )
