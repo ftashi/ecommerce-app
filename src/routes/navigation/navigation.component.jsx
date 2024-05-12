@@ -26,13 +26,13 @@ const Navigation = () => {
 
   const signOutUser = () => dispatch(signOutStart());
 
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.getElementById(<NavigationContainer/>).style.top = "0";
-    } else {
-      document.getElementById(<NavigationContainer/>).style.top = "-50px";
-    }
-  }
+  // function scrollFunction() {
+  //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  //     document.getElementById(<NavigationContainer/>).style.top = "0";
+  //   } else {
+  //     document.getElementById(<NavigationContainer/>).style.top = "-50px";
+  //   }
+  // }
 
   return (
     <Fragment>
