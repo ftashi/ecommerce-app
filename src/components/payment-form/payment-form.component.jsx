@@ -46,7 +46,6 @@ const {
 const paymentResult = await stripe.confirmCardPayment(client_secret, {
 
     payment_method: {
-
         card: elements.getElement(CardElement),
 
         billing_details: {
