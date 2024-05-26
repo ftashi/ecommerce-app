@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 export const Box = styled.div`
 padding: 1% 2.5%;
 	background-color: white;
-	// position: absolute;
+	 //position: absolute;
 	bottom: 0;
 	width: 95%;
 
-	@media (max-width: 1000px) {
-		 /* padding: 70px 30px; */
+	@media (max-width: 800px) {
+		  padding: 70px 30px; 
 	}
 `;
 
@@ -38,7 +38,7 @@ export const Row = styled.div`
 	);
 	grid-gap: 20px;
 
-	@media (max-width: 1000px) {
+	@media (max-width: 800px) {
 		grid-template-columns: repeat(
 			auto-fill,
 			minmax(200px, 1fr)
